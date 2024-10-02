@@ -15,11 +15,13 @@ class Logger:
 
         print(self.log.__qualname__)
 
-        if iter(filter_match):
+        try:
+            iter(filter_match)
             print(*filter_match,sep='\n')
-        else:
+        except:
             print("filter is not iter")
             return
+
 
         if all(f.match(message) for f in self.filters):
             for h in self.handlers:
